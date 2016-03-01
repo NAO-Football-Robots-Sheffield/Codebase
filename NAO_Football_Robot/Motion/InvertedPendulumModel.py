@@ -53,15 +53,21 @@ class LIPM:
             math.tanh(self.k * self.next_beginning_time)
         )
 
+    def get_position_x_component(self, time):
+        return self.ZMP_forwards_velocity * (1/self.k) * math.sinh(self.k * time)
+
+    def get_position_y_component(self, time):
+        return self.ZMP_lateral_position * math.cosh(self.k * time)
+
     def get_phase(self, time):
         return (time - self.beginning_time) / (self.ending_time - self.beginning_time)
 
     def get_non_supporting_foot_function(self, time):
         return (1 - math.cos(almath.PI*self.get_phase(time))) / 2.0
 
-    # TODO: Define lifting function
     def get_lifting_function(self, time):
-        pass
+        lift_multiplier = 30    # Maximum foot height
+        return math.sin(self.get_phase(time)) * lift_multiplier
 
     def get_feet_positions(self, time):
         pass
