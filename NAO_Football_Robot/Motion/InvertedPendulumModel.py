@@ -19,7 +19,6 @@ class LIPM:
         self.pendulum_height = proxy.getCOM("Body", motion.FRAME_ROBOT, True)[2]
         self.k = math.sqrt(RobotConstants.GRAVITATIONAL_ACCELERATION / self.pendulum_height)
         self.beginning_time = beginning_time
-
         #  TODO: Move r constants in RobotConstants?
         self.r_lateral = RobotConstants.LEG_DISTANCE / 2.0  # ry
         #  TODO: How do I initialise this?
